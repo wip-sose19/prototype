@@ -14,7 +14,7 @@ const StyledNavBar = styled.nav`
 
   a {
     text-decoration: none;
-    color: #8e44adN;
+    color: #8e44ad;
   }
 `;
 
