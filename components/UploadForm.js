@@ -6,6 +6,31 @@ const Form = styled.form`
 	justify-content: space-between;
 	flex-direction: column;
 	padding: 2rem;
+	width: 90%;
+	max-width: 900px;
+	margin: 0 auto;
+	label {
+		margin-bottom: 2rem;
+		font-size: 1.6rem;
+		input,
+		textarea {
+			display: block;
+			width: 100%;
+			font-size: 1.4rem;
+			line-height: 2;
+			margin-top: 0.5rem;
+			border: 1px solid #ecf0f1;
+			border-radius: 4px;
+		}
+	}
+	button {
+		padding: 1rem;
+		font-size: 1.4rem;
+		border: 1px solid #ecf0f1;
+		background: #ecf0f1;
+		cursor: pointer;
+		border-radius: 4px;
+	}
 `;
 
 class UploadForm extends Component {
@@ -18,7 +43,7 @@ class UploadForm extends Component {
 				</label>
 				<label htmlFor="description">
 					Beschreibung
-					<input type="text" name="description" />
+					<textarea type="text" name="description" rows="8" />
 				</label>
 				<label htmlFor="price">
 					Preis

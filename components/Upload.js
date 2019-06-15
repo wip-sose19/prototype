@@ -3,7 +3,12 @@ import UploadForm from './UploadForm';
 
 class Upload extends Component {
 	render() {
-		return <UploadForm />;
+		return (
+			<>
+				<h3>Artikel hochladen</h3>
+				<UploadForm />
+			</>
+		);
 	}
 }
 
