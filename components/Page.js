@@ -1,6 +1,6 @@
-import React from 'react';
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
-import Header from './Header';
+import React from "react";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import Header from "./Header";
 
 const GlobalSyte = createGlobalStyle`
   html {
@@ -18,17 +18,17 @@ const GlobalSyte = createGlobalStyle`
 `;
 
 const theme = {
-	primray: '#8e44ad'
+  primray: "#8e44ad"
 };
 
 const Page = props => (
-	<ThemeProvider theme={theme}>
-		<>
-			<GlobalSyte />
-			<Header />
-			{props.children}
-		</>
-	</ThemeProvider>
+  <ThemeProvider theme={theme}>
+    <>
+      <GlobalSyte />
+      <Header />
+      {props.children}
+    </>
+  </ThemeProvider>
 );
 
 export default Page;
