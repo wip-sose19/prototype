@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import UploadForm from './UploadForm';
+import { Logo } from './Header';
 
 class Upload extends Component {
 	render() {
 		return (
 			<>
-				<h3>Artikel hochladen</h3>
+				<Logo>Artikel hochladen</Logo>
 				<UploadForm />
 			</>
 		);

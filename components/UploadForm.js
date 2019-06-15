@@ -34,24 +34,60 @@ const Form = styled.form`
 `;
 
 class UploadForm extends Component {
+	state = {
+		title: '',
+		description: '',
+		price: 0,
+		count: 0
+	};
+
+	onChange = e => {
+		const { value, type, name } = e.target;
+		const val = type === 'number' ? parseFloat(value) : value;
+		this.setState({
+			[name]: val
+		});
+	};
+
 	render() {
 		return (
 			<Form>
 				<label htmlFor="title">
 					Name
-					<input type="text" name="title" />
+					<input
+						type="text"
+						name="title"
+						onChange={this.onChange}
+						value={this.state.title}
+					/>
 				</label>
 				<label htmlFor="description">
 					Beschreibung
-					<textarea type="text" name="description" rows="8" />
+					<textarea
+						type="text"
+						name="description"
+						rows="8"
+						onChange={this.onChange}
+						value={this.state.description}
+					/>
 				</label>
 				<label htmlFor="price">
 					Preis
-					<input type="number" name="price" />
+					<input
+						type="number"
+						name="price"
+						onChange={this.onChange}
+						value={this.state.price}
+					/>
 				</label>
 				<label htmlFor="count">
 					Anzahl
-					<input type="number" name="price" />
+					<input
+						type="number"
+						name="count"
+						onChange={this.onChange}
+						value={this.state.count}
+					/>
 				</label>
 				<button type="submit">Hochladen</button>
 			</Form>
