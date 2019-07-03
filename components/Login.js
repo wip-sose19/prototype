@@ -1,5 +1,6 @@
-import React from "react";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { loadDB } from '../lib/db';
 
 const StyledLogin = styled.form`
   form {
@@ -7,8 +8,8 @@ const StyledLogin = styled.form`
   }
 
   /* Full-width inputs */
-  input[type="text"],
-  input[type="password"] {
+  input[type='email'],
+  input[type='password'] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -19,7 +20,7 @@ const StyledLogin = styled.form`
 
   /* Set a style for all buttons */
   button {
-    background-color: #4caf50;
+    background-color: ${props => props.theme.primary};
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -75,34 +76,65 @@ const StyledLogin = styled.form`
   }
 `;
 
-const Login = props => (
-  <StyledLogin action="action_page.php">
-    <div class="container">
-      <label for="uname">
-        <b>Username</b>
-      </label>
-      <input type="text" placeholder="Enter Username" name="uname" required />
+class Login extends Component {
+  state = {
+    email: '',
+    password: '',
+  };
 
-      <label for="psw">
-        <b>Password</b>
-      </label>
-      <input type="password" placeholder="Enter Password" name="psw" required />
+  onChnage = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
+  };
 
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember" /> Remember me
-      </label>
-    </div>
+  onSubmit = async e => {
+    e.preventDefault();
+    const firebase = await loadDB();
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => {
+        console.log('success');
+      })
+      .catch(err => console.log(err));
+  };
 
-    <div class="container">
-      <button type="button" class="cancelbtn">
-        Cancel
-      </button>
-      <span class="psw">
-        Forgot <a href="#">password?</a>
-      </span>
-    </div>
-  </StyledLogin>
-);
+  render() {
+    return (
+      <StyledLogin
+        action="action_page.php"
+        method="POST"
+        onSubmit={this.onSubmit}
+      >
+        <div className="container">
+          <label htmlFor="email">
+            <b>Email</b>
+            <input
+              type="email"
+              placeholder="Enter Email"
+              name="email"
+              required
+              value={this.state.email}
+              onChange={this.onChnage}
+            />
+          </label>
+
+          <label htmlFor="password">
+            <b>Password</b>
+            <input
+              type="password"
+              placeholder="Enter Password"
+              name="password"
+              required
+              value={this.state.password}
+              onChange={this.onChnage}
+            />
+          </label>
+
+          <button type="submit">Anmelden</button>
+        </div>
+      </StyledLogin>
+    );
+  }
+}
 
 export default Login;

@@ -18,23 +18,23 @@ const GlobalSyte = createGlobalStyle`
 `;
 
 const theme = {
-	primary: '#8e44ad',
-	border: '#bdc3c7'
+  primary: '#8e44ad',
+  border: '#bdc3c7',
 };
 
 const Inner = styled.div`
-	max-width: 1000px;
-	margin: 0 auto;
+  max-width: 1000px;
+  margin: 0 auto;
 `;
 
 const Page = props => (
-	<ThemeProvider theme={theme}>
-		<>
-			<GlobalSyte />
-			<Header />
-			<Inner>{props.children}</Inner>
-		</>
-	</ThemeProvider>
+  <ThemeProvider theme={theme}>
+    <>
+      <GlobalSyte />
+      <Header />
+      <Inner>{props.children}</Inner>
+    </>
+  </ThemeProvider>
 );
 
 export default Page;
